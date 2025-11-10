@@ -1,4 +1,5 @@
 # hello-maui-widget
+This is a demo project to record how to create a simple .NET MAUI app with iOS Widget Extension.
 
 ## Instructions to Reproduce
 
@@ -18,6 +19,14 @@ We don't need Tizen, Windows and MacCatalyst platforms for this demo.
 - Open XCode
 - Create a new App project
 - File -> New -> Target -> Widget Extension
+
+5. Run the project
+
+```bash
+dotnet build -t:Run -f net9.0-ios -p:_DeviceName="iPhone 15"
+# or
+maui run ios --device "iPhone 15"
+```
 
 ## Troubleshooting
 ### If it is saying Android SDK not found:
@@ -70,3 +79,26 @@ Go to Apple Developer [site](https://developer.apple.com/download/all/) and down
     - CFBundleShortVersionString=1.0.
     
 ### App Group Id need to be in Entitlements.plist instead of Info.plist
+
+
+### Cannot find iPhone 4s simulator
+> EXEC : error MT1207: Could not find the simulator device type 'iPhone 4s'.
+
+Find the correct UDID with:
+```bash
+xcrun simctl list devices
+```
+
+```
+# Shows
+-- iOS 26.1 --
+    iPhone 17 Pro (716C3FE0-62D8-4D79-B213-3F247D6BB4B4) (Booted) 
+    iPhone 17 Pro Max (23E55348-EFEE-4BE9-83B2-EE842DBA8A55) (Shutdown) 
+    iPhone Air (B2E4286E-DC4D-47BB-A3B1-23B5E79DE73C) (Shutdown) 
+    iPhone 17 (7A1FBC27-9B27-46BF-B911-96E7899CE091) (Shutdown) 
+    iPhone 16e (81C3ACEE-4091-46A8-9099-2335AB89A185) (Shutdown) 
+```
+Then run with:
+```bash
+dotnet build -t:Run -f net9.0-ios -p:_DeviceId=716C3FE0-62D8-4D79-B213-3F247D6BB4B4
+```

@@ -1,0 +1,1 @@
+dotnet build -t:Run -f net9.0-android -p:_DeviceId=Pixel_3a_API_34_extension_level_7_arm64-v8a

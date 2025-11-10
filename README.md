@@ -100,5 +100,22 @@ xcrun simctl list devices
 ```
 Then run with:
 ```bash
-dotnet build -t:Run -f net9.0-ios -p:_DeviceId=716C3FE0-62D8-4D79-B213-3F247D6BB4B4
+# Note that the parameter is _DeviceName not _DeviceId, but the value is UDID
+dotnet build -t:Run -f net9.0-ios -p:_DeviceName=:v2:udid=684A48DD-AC09-41D0-979E-FB8DE6F69F5C
+```
+
+### Android emulator
+Find available Android emulators by:
+
+```bash
+# List available AVDs
+$ANDROID_HOME/emulator/emulator -list-avds
+
+# Start a specific AVD
+$ANDROID_HOME/emulator/emulator -avd Pixel_3a_API_34_extension_level_7_arm64-v8a
+```
+
+Have to start the emulator first before running the app, then run:
+```bash
+dotnet build -t:Run -f net9.0-android -p:_DeviceId=Pixel_3a_API_34_extension_level_7_arm64-v8a
 ```

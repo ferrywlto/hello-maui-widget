@@ -1,0 +1,1 @@
+dotnet build -t:Run -f net9.0-ios -p:_DeviceName=:v2:udid=684A48DD-AC09-41D0-979E-FB8DE6F69F5C

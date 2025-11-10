@@ -47,6 +47,11 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
 
+		<!-- Include everything inside PlugIns (your appex) into the app bundle -->
+		<BundleResource Include="Platforms/iOS/PlugIns/**">
+			<!-- Force appex into PlugIns/ directory in final bundle -->
+			<LogicalName>PlugIns/%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+		</BundleResource>
+	</ItemGroup>
 </Project>

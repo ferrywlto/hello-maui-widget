@@ -15,7 +15,7 @@
 		 <AcceptAndroidSDKLicenses>true</AcceptAndroidSDKLicenses>
 
 		<!-- Display name -->
-		<ApplicationTitle>App</ApplicationTitle>
+		<ApplicationTitle>MAUI WidgetApp</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>ferry.hello-maui-widget</ApplicationId>

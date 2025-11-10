@@ -35,6 +35,17 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
+            <Button
+                x:Name="WidgetBtn"
+                Text="Write &amp; Reload Widget"
+                Clicked="OnWriteAndReloadClicked"
+                HorizontalOptions="Center" />
+
+            <Label
+                x:Name="WidgetLabel"
+                SemanticProperties.HeadingLevel="Level3"
+                FontSize="18"
+                HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>
  

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>App</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -11,11 +11,14 @@
 		<!-- For iOS -->
 		<CodesignEntitlements>Platforms/iOS/Entitlements.plist</CodesignEntitlements>
 
+		<!-- For Android -->
+		 <AcceptAndroidSDKLicenses>true</AcceptAndroidSDKLicenses>
+
 		<!-- Display name -->
 		<ApplicationTitle>App</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.app</ApplicationId>
+		<ApplicationId>ferry.hello-maui-widget</ApplicationId>
 		<ApplicationIdGuid>8e3505f7-c050-4a22-afae-da72ea3a6a79</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -25,8 +28,10 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
+
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 

@@ -1,6 +1,7 @@
 # OS
 .DS_Store
 *.tmp
+App/Platforms/iOS/PlugIns/*.appex
 
 # Xcode
 #

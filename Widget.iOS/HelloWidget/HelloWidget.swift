@@ -23,7 +23,7 @@ struct DemoProvider: TimelineProvider {
     }
 
     private func readHello() -> String {
-        let defaults = UserDefaults(suiteName: "app-group.ferry.hello-maui-widget")
+        let defaults = UserDefaults(suiteName: "group.ferry.hello-maui-widget")
         return defaults?.string(forKey: "helloValue") ?? "not set"
     }
 }

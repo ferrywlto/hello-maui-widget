@@ -13,10 +13,11 @@ public partial class MainPage : ContentPage
 
 	private void OnWriteAndReloadClicked(object sender, EventArgs e)
 	{
+		count++;
+		currentString = $"Hello #{count} at {DateTime.Now:T}";
 		#if IOS
-			count++;
-			currentString = $"Hello #{count} at {DateTime.Now:T}";
 			WidgetBridge.WriteHello(currentString);
+			WidgetReloader.ReloadAll();
 			// WidgetBridge.ReloadAllViaSwift(); // or .ReloadAll() if you have direct binding
 		#endif        
 		

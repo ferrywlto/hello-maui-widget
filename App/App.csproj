@@ -54,4 +54,19 @@
 			<LogicalName>PlugIns/%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
 		</BundleResource>
 	</ItemGroup>
+
+	<Target Name="CopyWidgetAppexFromDerivedData" BeforeTargets="_CompileToNative">
+		<PropertyGroup>
+			<WidgetAppexSrc>$(HOME)/Library/Developer/Xcode/DerivedData/Widget.iOS-atwdifvnfpwfbxcjndjaydhmmttf/Build/Products/Debug-iphonesimulator/HelloWidgetExtension.appex</WidgetAppexSrc>
+			<WidgetAppexDst>$(ProjectDir)Platforms/iOS/PlugIns/HelloWidgetExtension.appex</WidgetAppexDst>
+		</PropertyGroup>
+
+		<RemoveDir Directories="$(WidgetAppexDst)" />
+		<MakeDir Directories="$(WidgetAppexDst)" />
+		<ItemGroup>
+			<AppexFiles Include="$(WidgetAppexSrc)/**" />
+		</ItemGroup>
+		<Copy SourceFiles="@(AppexFiles)" 
+				DestinationFiles="@(AppexFiles->'$(WidgetAppexDst)/%(RecursiveDir)%(Filename)%(Extension)')" />
+		</Target>
 </Project>

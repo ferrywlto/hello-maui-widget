@@ -119,3 +119,47 @@ Have to start the emulator first before running the app, then run:
 ```bash
 dotnet build -t:Run -f net9.0-android -p:_DeviceId=Pixel_3a_API_34_extension_level_7_arm64-v8a
 ```
+
+### Folder structure in final .app bundle for iOS Widget Extension
+
+To verify the final .app bundle structure, after building the app, after installing the app to simulator:
+
+```bash
+# replace with your app bundle id
+xcrun simctl get_app_container booted ferry.hello-maui-widget 
+```
+
+Should show something like:
+```
+/Users/<your_username>/Library/Developer/CoreSimulator/Devices/716C3FE0-62D8-4D79-B213-3F247D6BB4B4/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app
+```
+
+Make sure the Widget Extension appex is under PlugIns/ folder:
+
+```bash
+/Users/<your_username>/Library/Developer/CoreSimulator/Devices/716C3FE0-62D8-4D79-B213-3F247D6BB4B4/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app/PlugIns/HelloWidgetExtension.appex
+```
+
+Do a code sign verification to ensure the appex is properly signed:
+
+```bash
+# If it shows nothing, it means the code sign verification passed.
+codesign --verify --deep --strict "/Users/ferrywlto/Library/Developer/CoreSimulator/Devices/716C3FE0-62D8-4D79-B213-3F247D6BB4B4/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app/PlugIns/HelloWidgetExtension.appex"
+```
+
+### Widget bundle type
+- By default, Xcode creates the Widget Extension with correct bundle type and NSExtensionPointIdentifier = `com.apple.widgetkit-extension`. 
+
+- When build, Xcode supplies `INFOPLIST_KEY_CFBundlePackageType = XPC!` via build settings for an extension target and/or infers it from the extension point, so it’s injected into the built product’s processed Info.plist.
+
+- It marks the bundle as an XPC service / app extension (WidgetKit, etc.).
+   CFBundlePackageType values tell LaunchServices what kind of bundle it is; `XPC!`
+   means “extension bundle launched via XPC” not a normal app (APPL). The system
+   then loads it inside the host app’s process (or designated extension runner)
+   using the NSExtensionPointIdentifier.
+
+### Bundle Identifier Naming
+- The Widget Extension bundle identifier must be prefixed with the main app bundle identifier.
+- If the main app bundle id is `ferry.hello-maui-widget`
+- The widget extension bundle id must be `ferry.hello-maui-widget.something`.
+- This is different from app group id.

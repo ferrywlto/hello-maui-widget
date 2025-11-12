@@ -3,6 +3,8 @@
 *.tmp
 *.appex
 *.xcframework
+*.a
+.idea/
 build/
 
 # Xcode
@@ -122,3 +124,7 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Project specific gitignore rules
+App/Platforms/iOS/Frameworks
+App/Platforms/iOS/PlugIns

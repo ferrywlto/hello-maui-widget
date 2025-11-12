@@ -23,6 +23,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B0095A252EC54CC900D2118F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B0A653CF2EC23CA800486C16 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -37,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B0095A272EC54CC900D2118F /* libHelloWidgetBridge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHelloWidgetBridge.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A653A82EC23C3600486C16 /* Widget.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Widget.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A653BA2EC23CA700486C16 /* HelloWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HelloWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A653BC2EC23CA700486C16 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -54,6 +64,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		B0095A282EC54CC900D2118F /* HelloWidgetBridge */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HelloWidgetBridge;
+			sourceTree = "<group>";
+		};
 		B0A653AA2EC23C3600486C16 /* Widget.iOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Widget.iOS;
@@ -70,6 +85,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B0095A242EC54CC900D2118F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B0A653A52EC23C3600486C16 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -94,6 +116,7 @@
 			children = (
 				B0A653AA2EC23C3600486C16 /* Widget.iOS */,
 				B0A653C02EC23CA700486C16 /* HelloWidget */,
+				B0095A282EC54CC900D2118F /* HelloWidgetBridge */,
 				B0A653BB2EC23CA700486C16 /* Frameworks */,
 				B0A653A92EC23C3600486C16 /* Products */,
 			);
@@ -104,6 +127,7 @@
 			children = (
 				B0A653A82EC23C3600486C16 /* Widget.iOS.app */,
 				B0A653BA2EC23CA700486C16 /* HelloWidgetExtension.appex */,
+				B0095A272EC54CC900D2118F /* libHelloWidgetBridge.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,6 +144,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B0095A262EC54CC900D2118F /* HelloWidgetBridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0095A2B2EC54CC900D2118F /* Build configuration list for PBXNativeTarget "HelloWidgetBridge" */;
+			buildPhases = (
+				B0095A232EC54CC900D2118F /* Sources */,
+				B0095A242EC54CC900D2118F /* Frameworks */,
+				B0095A252EC54CC900D2118F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B0095A282EC54CC900D2118F /* HelloWidgetBridge */,
+			);
+			name = HelloWidgetBridge;
+			packageProductDependencies = (
+			);
+			productName = HelloWidgetBridge;
+			productReference = B0095A272EC54CC900D2118F /* libHelloWidgetBridge.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		B0A653A72EC23C3600486C16 /* Widget.iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0A653B32EC23C3700486C16 /* Build configuration list for PBXNativeTarget "Widget.iOS" */;
@@ -176,6 +222,9 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					B0095A262EC54CC900D2118F = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
 					B0A653A72EC23C3600486C16 = {
 						CreatedOnToolsVersion = 26.1;
 					};
@@ -200,6 +249,7 @@
 			targets = (
 				B0A653A72EC23C3600486C16 /* Widget.iOS */,
 				B0A653B92EC23CA700486C16 /* HelloWidgetExtension */,
+				B0095A262EC54CC900D2118F /* HelloWidgetBridge */,
 			);
 		};
 /* End PBXProject section */
@@ -222,6 +272,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B0095A232EC54CC900D2118F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B0A653A42EC23C3600486C16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,6 +304,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		B0095A2C2EC54CC900D2118F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 343UC2RCST;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B0095A2D2EC54CC900D2118F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 343UC2RCST;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		B0A653B12EC23C3700486C16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -499,6 +588,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B0095A2B2EC54CC900D2118F /* Build configuration list for PBXNativeTarget "HelloWidgetBridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0095A2C2EC54CC900D2118F /* Debug */,
+				B0095A2D2EC54CC900D2118F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B0A653A32EC23C3600486C16 /* Build configuration list for PBXProject "Widget.iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

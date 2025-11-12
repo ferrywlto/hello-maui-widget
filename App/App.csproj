@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+		<TargetFrameworks>net10.0-ios</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>App</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -34,10 +34,6 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
-		<ProjectReference Include="../Binding.iOS/Binding.iOS.csproj" />
-	</ItemGroup>
-
 	<ItemGroup>
 
 		<!-- App Icon -->
@@ -55,15 +51,23 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>	
 
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 		<!-- Include everything inside PlugIns (your appex) into the app bundle -->
 		<BundleResource Include="Platforms/iOS/PlugIns/**">
 			<!-- Force appex into PlugIns/ directory in final bundle -->
 			<LogicalName>PlugIns/%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
 		</BundleResource>
-	</ItemGroup>	
 
-	<Target Name="CopyWidgetAppexFromDerivedData" BeforeTargets="_CompileToNative">
+		<!-- Must match the actual file you copied -->
+		<NativeReference Include="Platforms/iOS/Frameworks/libHelloWidgetBridge.a">
+			<Kind>Static</Kind>
+			<ForceLoad>true</ForceLoad>
+		</NativeReference>		
+	</ItemGroup>
+
+	<Target Name="CopyWidgetAppexFromDerivedData" BeforeTargets="_CompileToNative" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 		<PropertyGroup>
 			<WidgetAppexSrc>$(HOME)/Library/Developer/Xcode/DerivedData/Widget.iOS-atwdifvnfpwfbxcjndjaydhmmttf/Build/Products/Debug-iphonesimulator/HelloWidgetExtension.appex</WidgetAppexSrc>
 			<WidgetAppexDst>$(ProjectDir)Platforms/iOS/PlugIns/HelloWidgetExtension.appex</WidgetAppexDst>

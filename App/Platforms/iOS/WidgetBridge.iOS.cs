@@ -1,5 +1,6 @@
 // Platforms/iOS/WidgetBridge.iOS.cs
 #if IOS
+using System.Runtime.InteropServices;
 using Foundation;
 
 public static class WidgetBridge
@@ -11,27 +12,15 @@ public static class WidgetBridge
         using var defaults = new NSUserDefaults(AppGroupId, NSUserDefaultsType.SuiteName);
         defaults.SetString(value, "helloValue");
         defaults.Synchronize();
-        WidgetReloader.ReloadAll();
+        HelloWidgetBridge.SayHello();
     }
+}
 
-    // If macios exposes WidgetKit bindings in your setup:
-    // public static void ReloadAll() => WidgetCenter.Shared.ReloadAllTimelines();
-    
-    // Otherwise, add a Swift helper (see next snippet) and call via ObjC:
-    // [DllImport(Constants.ObjectiveCLibrary, EntryPoint = "objc_getClass")]
-    // static extern IntPtr GetClass(string name);
+public static class HelloWidgetBridge
+{
+    [DllImport("__Internal", EntryPoint = "HelloWidgetBridge_SayHello")]
+    private static extern void _SayHello();
 
-    // [Export("reloadAll")] static void reloadAll() { } // signature placeholder
-
-    // public static void ReloadAllViaSwift()
-    // {
-    //     // Ensure class is linked
-    //     var handle = GetClass("WidgetReloader");
-    //     if (handle != IntPtr.Zero)
-    //     {
-    //         var sel = new Selector("reloadAll");
-    //         NSObject.PerformSelector(sel, null, 0);
-    //     }
-    // }
+    public static void SayHello() => _SayHello();
 }
 #endif

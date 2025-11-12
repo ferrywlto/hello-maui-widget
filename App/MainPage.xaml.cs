@@ -17,7 +17,8 @@ public partial class MainPage : ContentPage
 		currentString = $"Hello #{count} at {DateTime.Now:T}";
 		#if IOS
 			WidgetBridge.WriteHello(currentString);
-			WidgetReloader.ReloadAll();
+			
+			// WidgetReloader.ReloadAll();
 			// WidgetBridge.ReloadAllViaSwift(); // or .ReloadAll() if you have direct binding
 		#endif        
 		

@@ -1,30 +1,16 @@
-﻿namespace App;
+﻿using Foundation;
+
+namespace App;
 
 public partial class MainPage : ContentPage
 {
 	int count = 0;
-	string currentString = "Hello, World!";
 
 	public MainPage()
 	{
 		InitializeComponent();
-		WidgetLabel.Text = currentString;
 	}
 
-	private void OnWriteAndReloadClicked(object sender, EventArgs e)
-	{
-		count++;
-		currentString = $"Hello #{count} at {DateTime.Now:T}";
-		#if IOS
-			WidgetBridge.WriteHello(currentString);
-			
-			// WidgetReloader.ReloadAll();
-			// WidgetBridge.ReloadAllViaSwift(); // or .ReloadAll() if you have direct binding
-		#endif        
-		
-		WidgetLabel.Text = currentString;
-		SemanticScreenReader.Announce(WidgetLabel.Text);
-    }
 	private void OnCounterClicked(object sender, EventArgs e)
 	{
 		count++;
@@ -34,6 +20,10 @@ public partial class MainPage : ContentPage
 		else
 			CounterBtn.Text = $"Clicked {count} times";
 
+        using var defaults = new NSUserDefaults("group.ferry.hello-maui-widget", NSUserDefaultsType.SuiteName);
+        defaults.SetString(count.ToString(), "helloValue");
+		HelloWidgetBridge.SayHello();
+		
 		SemanticScreenReader.Announce(CounterBtn.Text);
 	}
 }

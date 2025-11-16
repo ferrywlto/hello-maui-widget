@@ -23,7 +23,7 @@ We don't need Tizen, Windows and MacCatalyst platforms for this demo.
 5. Run the project
 
 ```bash
-dotnet build -t:Run -f net9.0-ios -p:_DeviceName="iPhone 15"
+dotnet build -t:Run -f net10.0-ios -p:_DeviceName="iPhone 15"
 # or
 maui run ios --device "iPhone 15"
 ```
@@ -31,7 +31,7 @@ maui run ios --device "iPhone 15"
 ## Troubleshooting
 ### If it is saying Android SDK not found:
 ```bash
-dotnet build -t:InstallAndroidDependencies -f net9.0-android "-p:AndroidSdkDirectory=/Users/ferrywlto/Library/Android/sdk"
+dotnet build -t:InstallAndroidDependencies -f net10.0-android "-p:AndroidSdkDirectory=$(Home)/Library/Android/sdk"
 ```
 If it is saying about accepting licenses:
 
@@ -101,7 +101,7 @@ xcrun simctl list devices
 Then run with:
 ```bash
 # Note that the parameter is _DeviceName not _DeviceId, but the value is UDID
-dotnet build -t:Run -f net9.0-ios -p:_DeviceName=:v2:udid=684A48DD-AC09-41D0-979E-FB8DE6F69F5C
+dotnet build -t:Run -f net10.0-ios -p:_DeviceName=:v2:udid=684A48DD-AC09-41D0-979E-FB8DE6F69F5C
 ```
 
 ### Android emulator
@@ -117,7 +117,7 @@ $ANDROID_HOME/emulator/emulator -avd Pixel_3a_API_34_extension_level_7_arm64-v8a
 
 Have to start the emulator first before running the app, then run:
 ```bash
-dotnet build -t:Run -f net9.0-android -p:_DeviceId=Pixel_3a_API_34_extension_level_7_arm64-v8a
+dotnet build -t:Run -f net10.0-android -p:_DeviceId=Pixel_3a_API_34_extension_level_7_arm64-v8a
 ```
 
 ### Folder structure in final .app bundle for iOS Widget Extension
@@ -131,20 +131,20 @@ xcrun simctl get_app_container booted ferry.hello-maui-widget
 
 Should show something like:
 ```
-/Users/<your_username>/Library/Developer/CoreSimulator/Devices/716C3FE0-62D8-4D79-B213-3F247D6BB4B4/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app
+/Users/<your_username>/Library/Developer/CoreSimulator/Devices/[YourSimulatorDeviceId]/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app
 ```
 
 Make sure the Widget Extension appex is under PlugIns/ folder:
 
 ```bash
-/Users/<your_username>/Library/Developer/CoreSimulator/Devices/716C3FE0-62D8-4D79-B213-3F247D6BB4B4/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app/PlugIns/HelloWidgetExtension.appex
+/Users/<your_username>/Library/Developer/CoreSimulator/Devices/[YourSimulatorDeviceId]/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app/PlugIns/HelloWidgetExtension.appex
 ```
 
 Do a code sign verification to ensure the appex is properly signed:
 
 ```bash
 # If it shows nothing, it means the code sign verification passed.
-codesign --verify --deep --strict "/Users/ferrywlto/Library/Developer/CoreSimulator/Devices/716C3FE0-62D8-4D79-B213-3F247D6BB4B4/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app/PlugIns/HelloWidgetExtension.appex"
+codesign --verify --deep --strict "$(HOME)/Library/Developer/CoreSimulator/Devices/[YourSimulatorDeviceId]/data/Containers/Bundle/Application/4136E43F-D9C4-47DA-B8F6-7D57255591BE/App.app/PlugIns/HelloWidgetExtension.appex"
 ```
 
 ### Widget bundle type
